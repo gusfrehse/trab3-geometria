@@ -1,15 +1,14 @@
-CC = g++
-CXX = g++
 CXXFLAGS += -Wall -Wextra -O0 -g -std=c++20
-OBJS = triangulate.o dcel.o 
+OBJS = windowing.o rangetree.o bsp.o
 
-triangulate : $(OBJS)
+windowing : $(OBJS)
 
-triangulate.o : triangulate.cpp  util.hpp
-dcel.o : dcel.cpp dcel.hpp util.hpp
+windowing.o : windowing.c rangetree.h util.h
+rangetree.o : rangetree.c rangetree.h bsp.h util.h
+bsp.o : bsp.c bsp.h util.h
 
-run : triangulate
-	./triangulate < input.txt
+run : windowing
+	./windowing
 
 clean :
-	rm -f $(TEST_OBJS) $(OBJS) $(MAIN) triangulate test
+	rm -f $(OBJS) windowing
